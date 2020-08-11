@@ -5,14 +5,13 @@ const hbs = require('express-handlebars');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const session = require('express-session');
-
 const app = express();
 
 // configure passport provider options
 passport.use(new GoogleStrategy({
-  clientID: '1045573064056-hfhgsfapjddklc3udc3vetc88gsi90iq.apps.googleusercontent.com',
-  clientSecret: '48W7H8qBILDoYHAjoedtbNQ3',
-  callbackURL: 'http://localhost:8000/auth/google/callback'
+  clientID: process.env.clientID,
+  clientSecret: process.env.clientSecret,
+  callbackURL: process.env.callbackURL,
 }, (accessToken, refreshToken, profile, done) => {
 done(null, profile);
 }));
